@@ -1,0 +1,24 @@
+/* My styles */
+
+body {
+	margin-top: 30px;
+	overflow-y: scroll;
+}
+
+.links {
+	margin-right:10px;
+	margin-bottom:30px;
+}
+
+.item-name {
+	display:inline-block;
+}
+
+.edit-btn {
+	display:inline-block;
+	margin-left:10px;
+}
+
+.create-btn {
+	margin-bottom:20px;
+}
