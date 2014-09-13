@@ -13,17 +13,17 @@ angular.module('app', [])
   ];
 
   $scope.vegetables = [
-    {"id": 0, "name": "Carrots", "type": "root", "color": ["orange"]}, 
-    {"id": 1, "name": "Kale", "type": "greens", "color": ["green", "red", "purple"]},
-    {"id": 2, "name": "Green Beans", "type": "legume", "color": ["green"]},
-    {"id": 3, "name": "Beets", "type": "root", "color": ["red"]}
+    {"id":0, "kind":"vegetable", "name": "Carrots", "type": "root", "color": ["orange"], "edit" :false}, 
+    {"id":1, "kind":"vegetable", "name": "Kale", "type": "greens", "color": ["green", "red", "purple"], "edit" :false},
+    {"id":2, "kind":"vegetable", "name": "Green Beans", "type": "legume", "color": ["green"], "edit" :false},
+    {"id":3, "kind":"vegetable", "name": "Beets", "type": "root", "color": ["red"], "edit" :false}
   ];
 
   $scope.fruits = [
-    {"id": 0, "name": "Bananas", "color": ["yellow"]}, 
-    {"id": 1, "name": "Oranges", "color": ["orange"]},
-    {"id": 2, "name": "Apples", "color": ["green", "red", "yellow"]},
-    {"id": 3, "name": "Peaches", "color": ["orange", "yellow"]}
+    {"id":0, "kind":"fruit", "name": "Bananas", "color": ["yellow"], "edit" :false}, 
+    {"id":1, "kind":"fruit", "name": "Oranges", "color": ["orange"], "edit" :false},
+    {"id":2, "kind":"fruit", "name": "Apples", "color": ["green", "red", "yellow"], "edit" :false},
+    {"id":3, "kind":"fruit", "name": "Peaches", "color": ["orange", "yellow"], "edit" :false}
   ]; 
 
   $scope.currentColor = null;
@@ -86,13 +86,15 @@ function resetCreateForm() {
     name: '',
     kind: '',
     type: '',
-    color: ''
+    color: '',
+    edit:false
   };
 }
 
 function createItem(item) {
+  item.edit = false;
   var kind = item.kind;
-  if (kind === "vegetables") {
+  if (kind === "vegetable") {
     item.id = $scope.vegetables.length;
   } else {
     item.id = $scope.fruits.length;
@@ -101,7 +103,7 @@ function createItem(item) {
   item.color = jQuery.makeArray(item.color);
   item.color = item.color[0].split(", ");
 
-  if (kind === "vegetables") {
+  if (kind === "vegetable") {
     $scope.vegetables.push(item);
   } else {
     $scope.fruits.push(item);
@@ -113,12 +115,18 @@ function createItem(item) {
  $scope.resetCreateForm = resetCreateForm;
  $scope.createItem = createItem;
 
-function isVeggie(item) {
-  console.log(item.kind);
-}
+ $scope.editedItem = null;
 
- $scope.isVeggie = isVeggie;
 
+
+ function setEditedItem(item) {
+    $scope.editedItem = item;
+    //if ($scope.editedItem.id === $(".edit-item").attr("data-id")) {
+      $scope.editedItem.edit = true;
+    //}
+ }
+
+ $scope.setEditedItem = setEditedItem;
 
 });
 
