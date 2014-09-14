@@ -1,133 +1,202 @@
 'use strict';
 
 angular.module('app', [])
-.controller("MainCtrl", function($scope) {
-  $scope.colors = [
-    {"id": 0, "col": "red"},
-    {"id": 1, "col": "orange"},
-    {"id": 2, "col": "yellow"},
-    {"id": 3, "col": "green"},
-    {"id": 4, "col": "blue"},
-    {"id": 5, "col": "purple"},
-    {"id": 6, "col": "brown"}
-  ];
+    .controller("MainCtrl", function($scope) {
+        $scope.colors = [{
+            "id": 0,
+            "col": "red"
+        }, {
+            "id": 1,
+            "col": "orange"
+        }, {
+            "id": 2,
+            "col": "yellow"
+        }, {
+            "id": 3,
+            "col": "green"
+        }, {
+            "id": 4,
+            "col": "blue"
+        }, {
+            "id": 5,
+            "col": "purple"
+        }, {
+            "id": 6,
+            "col": "brown"
+        }];
 
-  $scope.vegetables = [
-    {"id":0, "kind":"vegetable", "name": "Carrots", "type": "root", "color": ["orange"], "edit" :false}, 
-    {"id":1, "kind":"vegetable", "name": "Kale", "type": "greens", "color": ["green", "red", "purple"], "edit" :false},
-    {"id":2, "kind":"vegetable", "name": "Green Beans", "type": "legume", "color": ["green"], "edit" :false},
-    {"id":3, "kind":"vegetable", "name": "Beets", "type": "root", "color": ["red"], "edit" :false}
-  ];
+        $scope.vegetables = [{
+            "id": 0,
+            "kind": "vegetable",
+            "name": "Carrots",
+            "type": "root",
+            "color": ["orange"],
+            "edit": false
+        }, {
+            "id": 1,
+            "kind": "vegetable",
+            "name": "Kale",
+            "type": "greens",
+            "color": ["green", "red", "purple"],
+            "edit": false
+        }, {
+            "id": 2,
+            "kind": "vegetable",
+            "name": "Green Beans",
+            "type": "legume",
+            "color": ["green"],
+            "edit": false
+        }, {
+            "id": 3,
+            "kind": "vegetable",
+            "name": "Beets",
+            "type": "root",
+            "color": ["red"],
+            "edit": false
+        }];
 
-  $scope.fruits = [
-    {"id":0, "kind":"fruit", "name": "Bananas", "color": ["yellow"], "edit" :false}, 
-    {"id":1, "kind":"fruit", "name": "Oranges", "color": ["orange"], "edit" :false},
-    {"id":2, "kind":"fruit", "name": "Apples", "color": ["green", "red", "yellow"], "edit" :false},
-    {"id":3, "kind":"fruit", "name": "Peaches", "color": ["orange", "yellow"], "edit" :false}
-  ]; 
+        $scope.fruits = [{
+            "id": 0,
+            "kind": "fruit",
+            "name": "Bananas",
+            "color": ["yellow"],
+            "edit": false
+        }, {
+            "id": 1,
+            "kind": "fruit",
+            "name": "Oranges",
+            "color": ["orange"],
+            "edit": false
+        }, {
+            "id": 2,
+            "kind": "fruit",
+            "name": "Apples",
+            "color": ["green", "red", "yellow"],
+            "edit": false
+        }, {
+            "id": 3,
+            "kind": "fruit",
+            "name": "Peaches",
+            "color": ["orange", "yellow"],
+            "edit": false
+        }];
 
-  $scope.currentColor = null;
+        $scope.kinds = [$scope.fruits, $scope.vegetables];
 
-  function setCurrentColor(color) {
-    $scope.currentColor = color;
-    cancelCreating();
-    cancelEditing();
-  }
+        $scope.currentColor = null;
 
-  function isCurrentColor(color) {
-    return $scope.currentColor !== null && color.col === $scope.currentColor.col;
-  }
+        function setCurrentColor(color) {
+            $scope.currentColor = color;
+            cancelCreating();
+            cancelEditing();
+        }
 
-  $scope.setCurrentColor = setCurrentColor;
-  $scope.isCurrentColor = isCurrentColor;
+        function isCurrentColor(color) {
+            return $scope.currentColor !== null && color.col === $scope.currentColor.col;
+        }
 
-  // Creating and Editing States
+        $scope.setCurrentColor = setCurrentColor;
+        $scope.isCurrentColor = isCurrentColor;
 
-  $scope.isCreating = false;
-  $scope.isEditing = false;
+        // Creating and Editing States
 
-  function startCreating() {
-    $scope.isCreating = true;
-    $scope.isEditing = false;
-  }
+        $scope.isCreating = false;
+        $scope.isEditing = false;
 
-  function cancelCreating() {
-    $scope.isCreating = false
-  }
+        function startCreating() {
+            $scope.isCreating = true;
+            $scope.isEditing = false;
+            clearEdit();
+        }
 
-  function startEditing() {
-    $scope.isCreating = false;
-    $scope.isEditing = true;
-  }
+        function cancelCreating() {
+            $scope.isCreating = false
+        }
 
-  function cancelEditing() {
-    $scope.isEditing = false;
-  }
+        function startEditing() {
+            $scope.isCreating = false;
+            $scope.isEditing = true;
+        }
 
-  function shouldShowCreating() {
-    return !$scope.isEditing;
-  }
+        function cancelEditing() {
+            $scope.isEditing = false;
+            clearEdit();
+        }
 
-  function shouldShowEditing() {
-    return !$scope.isCreating;
-  }
+        function shouldShowCreating() {
+            return !$scope.isEditing;
+        }
 
-  $scope.startCreating = startCreating;
-  $scope.cancelCreating = cancelCreating;
-  $scope.startEditing = startEditing;
-  $scope.cancelEditing = cancelEditing;
-  $scope.shouldShowCreating = shouldShowCreating;
-  $scope.shouldShowEditing = shouldShowEditing;
+        function shouldShowEditing() {
+            return !$scope.isCreating;
+        }
 
-// Crud
+        $scope.startCreating = startCreating;
+        $scope.cancelCreating = cancelCreating;
+        $scope.startEditing = startEditing;
+        $scope.cancelEditing = cancelEditing;
+        $scope.shouldShowCreating = shouldShowCreating;
+        $scope.shouldShowEditing = shouldShowEditing;
 
-function resetCreateForm() {
-  $scope.newItem = {
-    name: '',
-    kind: '',
-    type: '',
-    color: '',
-    edit:false
-  };
-}
+        // Crud
 
-function createItem(item) {
-  item.edit = false;
-  var kind = item.kind;
-  if (kind === "vegetable") {
-    item.id = $scope.vegetables.length;
-  } else {
-    item.id = $scope.fruits.length;
-  }
+        function resetCreateForm() {
+            $scope.newItem = {
+                name: '',
+                kind: '',
+                type: '',
+                color: '',
+                edit: false
+            };
+        }
 
-  item.color = jQuery.makeArray(item.color);
-  item.color = item.color[0].split(", ");
+        function createItem(item) {
+            item.edit = false;
+            var kind = item.kind;
+            if (kind === "vegetable") {
+                item.id = $scope.vegetables.length;
+            } else {
+                item.id = $scope.fruits.length;
+            }
 
-  if (kind === "vegetable") {
-    $scope.vegetables.push(item);
-  } else {
-    $scope.fruits.push(item);
-  }
+            item.color = jQuery.makeArray(item.color);
+            item.color = item.color[0].split(", ");
 
-  resetCreateForm();
-} 
+            if (kind === "vegetable") {
+                $scope.vegetables.push(item);
+            } else {
+                $scope.fruits.push(item);
+            }
+            resetCreateForm();
+        }
 
- $scope.resetCreateForm = resetCreateForm;
- $scope.createItem = createItem;
+        $scope.resetCreateForm = resetCreateForm;
+        $scope.createItem = createItem;
 
- $scope.editedItem = null;
+        $scope.editedItem = null;
 
+        function resetEdits(items) {
+            for (var i=0, iLen = items.length; i < iLen; i++) {
+                items[i].edit = false;
+            }
+        }
 
+        function clearEdit() {
+            for (var i=0, iLen = $scope.kinds.length; i < iLen; i++) {
+                resetEdits($scope.kinds[i]);
+            }
+        }
 
- function setEditedItem(item) {
-    $scope.editedItem = item;
-    //if ($scope.editedItem.id === $(".edit-item").attr("data-id")) {
-      $scope.editedItem.edit = true;
-    //}
- }
+        $scope.resetEdits = resetEdits;
+        $scope.clearEdit = clearEdit;
 
- $scope.setEditedItem = setEditedItem;
+        function setEditedItem(item) {
+            clearEdit();
+            $scope.editedItem = item;
+            $scope.editedItem.edit = true;
+            console.log($scope.vegetables[0].color)
+        }
 
-});
+        $scope.setEditedItem = setEditedItem;
 
-
+    });
