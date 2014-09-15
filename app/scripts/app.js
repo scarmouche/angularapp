@@ -24,34 +24,34 @@ angular.module('app', [])
             "id": 6,
             "col": "brown"
         }];
-
+        
         $scope.vegetables = [{
             "id": 0,
             "kind": "vegetable",
             "name": "Carrots",
             "type": "root",
-            "color": ["orange"],
+            "color": "orange",
             "edit": false
         }, {
             "id": 1,
             "kind": "vegetable",
             "name": "Kale",
             "type": "greens",
-            "color": ["green", "red", "purple"],
+            "color": "green, red, purple",
             "edit": false
         }, {
             "id": 2,
             "kind": "vegetable",
             "name": "Green Beans",
             "type": "legume",
-            "color": ["green"],
+            "color": "green",
             "edit": false
         }, {
             "id": 3,
             "kind": "vegetable",
             "name": "Beets",
             "type": "root",
-            "color": ["red"],
+            "color": "red",
             "edit": false
         }];
 
@@ -59,25 +59,29 @@ angular.module('app', [])
             "id": 0,
             "kind": "fruit",
             "name": "Bananas",
-            "color": ["yellow"],
+            "type": "starch",
+            "color": "yellow",
             "edit": false
         }, {
             "id": 1,
             "kind": "fruit",
             "name": "Oranges",
-            "color": ["orange"],
+            "type": "citrus",
+            "color": "orange",
             "edit": false
         }, {
             "id": 2,
             "kind": "fruit",
             "name": "Apples",
-            "color": ["green", "red", "yellow"],
+            "type": "seed",
+            "color": "green, red, yellow",
             "edit": false
         }, {
             "id": 3,
             "kind": "fruit",
             "name": "Peaches",
-            "color": ["orange", "yellow"],
+            "type": "stone",
+            "color": "orange, yellow",
             "edit": false
         }];
 
@@ -150,24 +154,26 @@ angular.module('app', [])
             };
         }
 
+        function getArrayName(item) {
+            var kind = item.kind;
+            if (kind === "vegetable" || "fruit") {
+                var kindArray = kind + "s";
+            } 
+            return kindArray;
+        }
+
         function createItem(item) {
             item.edit = false;
             var kind = item.kind;
             if (kind === "vegetable") {
                 item.id = $scope.vegetables.length;
-            } else {
-                item.id = $scope.fruits.length;
-            }
-
-            item.color = jQuery.makeArray(item.color);
-            item.color = item.color[0].split(", ");
-
-            if (kind === "vegetable") {
                 $scope.vegetables.push(item);
             } else {
+                item.id = $scope.fruits.length;
                 $scope.fruits.push(item);
             }
             resetCreateForm();
+            cancelCreating();
         }
 
         $scope.resetCreateForm = resetCreateForm;
@@ -185,6 +191,7 @@ angular.module('app', [])
             for (var i=0, iLen = $scope.kinds.length; i < iLen; i++) {
                 resetEdits($scope.kinds[i]);
             }
+            $scope.editedItem = null;
         }
 
         $scope.resetEdits = resetEdits;
@@ -192,11 +199,33 @@ angular.module('app', [])
 
         function setEditedItem(item) {
             clearEdit();
+            item.edit = true;
             $scope.editedItem = item;
-            $scope.editedItem.edit = true;
-            console.log($scope.vegetables[0].color)
         }
 
+        $scope.itemUpdate = false; 
+
+        function updateItem(item) {
+            if ($scope.editedItem.kind !== item.kind) {
+                var array = getArrayName(item);    
+                $scope.array.push($scope.editedItem);
+            }
+            $scope.itemUpdate = true;
+            cancelEditing();
+
+        }
+
+        function removeUpdateMsg() {
+            $scope.itemUpdate = false;
+        } 
+
+        function isSelectedItem(itemId) {
+            return $scope.editedItem !== null && $scope.editedItem.id === itemId;
+        }
+
+        $scope.isSelectedItem = isSelectedItem;
         $scope.setEditedItem = setEditedItem;
+        $scope.updateItem = updateItem;
+
 
     });

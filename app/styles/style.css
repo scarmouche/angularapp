@@ -22,3 +22,7 @@ body {
 .create-btn {
 	margin-bottom:20px;
 }
+
+.currentEdit {
+	border: 3px solid blue;
+}
