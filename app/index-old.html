@@ -1,0 +1,121 @@
+<!doctype html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <title>My Angular App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body ng-controller="MainCtrl">
+
+    <div class="container">
+      
+      <a href="#" class="btn btn-primary links" ng-click="setCurrentColor(null)">All Colors</a>
+      <a ng-repeat="color in colors" class="btn btn-primary links" href="#" ng-click="setCurrentColor(color)" ng-class="{'active':isCurrentColor(color)}">{{color.col}}</a>
+      
+      <div>
+        <button type="button" class="btn btn-default create-btn" ng-click="startCreating();">Add new item</button>
+      </div>
+      
+      <!-- CREATING FORM -->
+      <div class="addnewitem" ng-show="isCreating" ng-if="shouldShowCreating()">
+        <p class="bg-success">Add new item</p>
+          <form class="create-form" role="form" ng-submit="createItem(newItem)">
+            <label for="newItemName">Item Name</label>
+            <input id="newItemName" ng-model="newItem.name" type="text" value="name" />   
+
+            <label for="newItemKind">Item Kind</label>
+            <select id="newItemKind" ng-model="newItem.kind">
+              <option id="newFruit" value="fruit">Fruit</option>
+              <option id="newVeg" value="vegetable">Vegetable</option>
+            </select>
+            
+            <label for="newItemType">Vegetable Type</label>
+            <input id="newItemType" ng-model="newItem.type" type="text" value="type" /> 
+            <label for="newItemName">Color(s)</label>
+            <input id="newItemColors" ng-model="newItem.color" type="text" value="colors" />  
+            
+            <input type="submit" class="btn btn-default" value="submit"/>
+            <input type="button" class="btn btn-danger" value="cancel" ng-click="cancelCreating()" /> 
+          </form>  
+      </div>
+      
+      <!-- PRODUCE LIST -->
+
+      <h4>Vegetables</h4>
+      <ul class="vegetable list-group">
+        <li ng-class="{'currentEdit':isSelectedItem(veg.id)}" ng-repeat="veg in vegetables | filter:{color:currentColor.col}" class="single list-group-item">
+        <p class="item-name"><strong>{{veg.name}}</strong></p>
+        <button type="button" class="btn btn-info btn-sm edit-btn" ng-click="setEditedItem(veg);startEditing();">Edit</button>
+          <p>Type: {{veg.type}}<p>
+          <p>Colors: {{veg.color}}<p> 
+
+            
+            <div class="edit-item" ng-if="veg.edit" ng-if="shouldShowEditing()">
+            <p class="bg-info">Edit {{editedItem.name}}</p>
+              <form class="edit-form" role="form" ng-submit="updateItem(editedItem)">
+                <label>Item Name</label>
+                <input ng-model="editedItem.name" type="text" value="name" />   
+
+                <label>Item Kind</label>
+                <select ng-model="editedItem.kind">
+                  <option id="newFruit" value="fruit">Fruit</option>
+                  <option id="newVeg" value="vegetable">Vegetable</option>
+                </select>
+                
+                <label>Vegetable Type</label>
+                <input ng-model="editedItem.type" type="text" value="type" /> 
+                <label>Color(s)</label>
+                <input ng-model="editedItem.color" type="text" value="colors" />
+                <input type="submit" class="btn btn-default" value="submit"/>
+                <input type="button" class="btn btn-danger" value="cancel" ng-click="cancelEditing(veg)" /> 
+              </form>
+
+          </div>
+
+        </li>
+      </ul>
+      
+      <h4>Fruits</h4>
+      <ul class="fruit list-group">
+        <li ng-class="{'currentEdit':isSelectedItem(fruit.id)}" ng-repeat="fruit in fruits | filter:{color:currentColor.col}" class="single list-group-item">
+          <p class="item-name"><strong>{{fruit.name}}</strong></p><button type="button" class="btn btn-info btn-sm edit-btn" ng-click="setEditedItem(fruit);startEditing();">Edit</button>
+            <p>Type: {{fruit.type}}<p>
+            <p>Colors: {{fruit.color}}<p>
+
+            <div class="edit-item" ng-if="fruit.edit" ng-if="shouldShowEditing()">
+            <p class="bg-info">Edit {{editedItem.name}}</p>
+              <form class="edit-form" role="form" ng-submit="updateItem(editedItem)">
+                <label>Item Name</label>
+                <input ng-model="editedItem.name" type="text" value="name" />   
+
+                <label>Item Kind</label>
+                <select ng-model="editedItem.kind">
+                  <option id="newFruit" value="fruit">Fruit</option>
+                  <option id="newVeg" value="vegetable">Vegetable</option>
+                </select>
+                
+                <label>Type</label>
+                <input ng-model="editedItem.type" type="text" value="type" /> 
+                <label>Color(s)</label>
+                <input ng-model="editedItem.color" type="text" value="colors" />
+                <input type="submit" class="btn btn-default" value="submit"/>
+                <input type="button" class="btn btn-danger" value="cancel" ng-click="cancelEditing(fruit)" /> 
+              </form>       
+          </div>        
+        </li>
+      </ul>
+
+    </div>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/lodash.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/app.js"></script>
+
+  </body>
+</html>
+

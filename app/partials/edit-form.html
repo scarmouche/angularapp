@@ -1,0 +1,20 @@
+<div class="edit-item" ng-if="pitem.edit" ng-if="shouldShowEditing()">
+  <p class="bg-info">Edit {{editedItem.name}}</p>
+    <form class="edit-form" role="form" ng-submit="updateItem(editedItem)">
+      <label>Item Name</label>
+      <input ng-model="editedItem.name" type="text" value="name" />   
+
+      <label>Item Kind</label>
+      <select ng-model="editedItem.kind">
+        <option id="newFruit" value="fruit">Fruit</option>
+        <option id="newVeg" value="vegetable">Vegetable</option>
+      </select>
+      
+      <label>Type</label>
+      <input ng-model="editedItem.type" type="text" value="type" /> 
+      <label>Color(s)</label>
+      <input ng-model="editedItem.color" type="text" value="colors" />
+      <input type="submit" class="btn btn-default" value="submit"/>
+      <input type="button" class="btn btn-danger" value="cancel" ng-click="cancelEditing(pitem)" /> 
+    </form>
+</div>
