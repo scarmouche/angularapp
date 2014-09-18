@@ -1,0 +1,2 @@
+<a href="#" class="btn btn-primary links" ng-click="setCurrentColor(null)" ng-class="{'active':currentColor==null}">All Colors</a>
+<a ng-repeat="color in colors" class="btn btn-primary links" href="#" ng-click="setCurrentColor(color)" ng-class="{'active':isCurrentColor(color)}">{{color.col}}</a>

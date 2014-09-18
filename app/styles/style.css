@@ -1,6 +1,7 @@
 /* My styles */
 
 body {
+	background-color:#e8e8e8;
 	margin-top: 30px;
 	overflow-y: scroll;
 }
@@ -24,5 +25,56 @@ body {
 }
 
 .currentEdit {
-	border: 3px solid blue;
+	border: 3px solid #238eb2;
+	background-color:#fffbea;
+}
+
+.data-block {
+	vertical-align:top;
+	padding:10px 10px;
+	height:100%;
+	float:left;
+}
+
+.data-block h3 {
+	font-size:1.2em;
+	margin:0 0 10px 0;
+}
+
+.data-block p {
+	font-size:0.8em;
+	line-height:1.3em;
+	margin-bottom:0px;
+}
+
+.data-block.basics {
+	background-color:#99C1C2;
+}
+
+.data-block.vitamins {
+	background-color:#8CB17A;
+}
+
+.data-block.minerals {
+	background-color:#FED46E;
+}
+
+.data-container-xs-height {
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+    width:100%;
+    border-spacing:10px 2px;
+}
+.data-row-xs-height {
+    display:table-row;
+}
+.data-col-xs-height {
+    display:table-cell;
+    float:none;
+    width:175px;
+}
+
+.item-data {
+	margin-left:-20px;
 }

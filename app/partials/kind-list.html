@@ -1,0 +1,2 @@
+ <a href="#" class="btn btn-primary links" ng-click="setCurrentKind(null)" ng-class="{'active':currentKind==null}">All Produce</a>
+  <a ng-repeat="kind in kinds" class="btn btn-primary links" href="#" ng-click="setCurrentKind(kind)" ng-class="{'active':isCurrentKind(kind)}">{{kind.k}}</a>

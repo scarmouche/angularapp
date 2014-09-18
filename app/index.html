@@ -11,9 +11,10 @@
   <body ng-controller="MainCtrl">
 
   <div class="container">
+
+    <div kind-list></div>
       
-    <a href="#" class="btn btn-primary links" ng-click="setCurrentColor(null)">All Colors</a>
-    <a ng-repeat="color in colors" class="btn btn-primary links" href="#" ng-click="setCurrentColor(color)" ng-class="{'active':isCurrentColor(color)}">{{color.col}}</a>
+    <div color-list></div>
 
       <div>
         <button type="button" class="btn btn-default create-btn" ng-click="startCreating();">Add new item</button>
@@ -23,29 +24,38 @@
     
       <!-- PRODUCE LIST -->
     <div id="produce-list">
-      <h4>Vegetables</h4>
+      <h4>Produce Items</h4>
       <ul class="vegetable list-group">
-        <li ng-class="{'currentEdit':isSelectedItem(pitem.id)}" ng-repeat="pitem in produce | filter:{color:currentColor.col} | filter:{kind:'vegetable'}" class="single list-group-item">
-        <p class="item-name"><strong>{{pitem.name}}</strong></p>
-        <button type="button" class="btn btn-info btn-sm edit-btn" ng-click="setEditedItem(pitem);startEditing();">Edit</button>
-          <p>Type: {{pitem.type}}<p>
-          <p>Colors: {{pitem.color}}<p> 
+        <li ng-class="{'currentEdit':isSelectedItem(pitem.id)}" ng-repeat="pitem in produce | filter:{color:currentColor.col} | filter:{kind:currentKind.k} | orderBy:'-name':!reverse" class="single list-group-item">
+        <div class="item-name-bar">
+          <p class="item-name"><strong>{{pitem.name}}</strong></p>
+          <button type="button" class="btn btn-info btn-sm edit-btn" ng-click="setEditedItem(pitem);startEditing();">Edit</button>
+        </div>
+        <div class="item-data">
+          <div class="data-container-xs-height">
+            <div class="data-rows-xs-height">
+              <div class="data-block basics data-col-xs-height">
+                <h3>Basics</h3>
+                <p>Type: {{pitem.type}}<p>
+                <p>Colors: {{pitem.color}}<p>
+                <p>Sugars: {{pitem.sugars}}</p> 
+              </div>
+              
+              <div class="data-block vitamins data-col-xs-height">
+                <h3>Vitamins</h3>
+                <p ng-repeat="(key, data) in pitem.vitamins">Vitamin {{key}}: {{data}}</p>
+              </div>
+              
+              <div class="data-block minerals data-col-xs-height">
+                <h3>Minerals</h3>
+                <p ng-repeat="(key, data) in pitem.minerals">{{key}}: {{data}}</p>
+              </div>
+            </div>
+          </div>
+        </div>  
+          <div class="clearfix"></div>
+          <edit-form></edit-form>
 
-            <edit-form></edit-form>
-
-        </li>
-      </ul>
-
-      <h4>Fruits</h4>
-      <ul class="fruit list-group">
-        <li ng-class="{'currentEdit':isSelectedItem(pitem.id)}" ng-repeat="pitem in produce | filter:{color:currentColor.col} | filter:{kind:'fruit'}" class="single list-group-item">
-        <p class="item-name"><strong>{{pitem.name}}</strong></p>
-        <button type="button" class="btn btn-info btn-sm edit-btn" ng-click="setEditedItem(pitem);startEditing();">Edit</button>
-          <p>Type: {{pitem.type}}<p>
-          <p>Colors: {{pitem.color}}<p>
-
-          <edit-form></edit-form> 
-          
         </li>
       </ul>
     </div>
