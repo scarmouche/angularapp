@@ -20,13 +20,35 @@ body {
 	margin-left:10px;
 }
 
+.bg-edit {
+	background-color:#5BC0DE;
+	color:#f4fcff;
+	padding:3px;
+}
+
+.edit-item {
+	margin-top:10px;
+}
+
 .create-btn {
 	margin-bottom:20px;
 }
 
+.bg-create {
+	background-color:#749e60;
+	color:#e5f2de;
+	padding:3px;
+}
+
+.create-item {
+	padding:8px;
+	background-color:#d9efce;
+	border:1px solid #749e60;
+}
+
 .currentEdit {
 	border: 3px solid #238eb2;
-	background-color:#fffbea;
+	background-color:#e2f8ff;
 }
 
 .data-block {
@@ -34,6 +56,7 @@ body {
 	padding:10px 10px;
 	height:100%;
 	float:left;
+	border:1px solid #686868;
 }
 
 .data-block h3 {
@@ -64,7 +87,7 @@ body {
     padding-left:0px;
     padding-right:0px;
     width:100%;
-    border-spacing:10px 2px;
+    border-spacing:10px 5px;
 }
 .data-row-xs-height {
     display:table-row;
@@ -77,4 +100,17 @@ body {
 
 .item-data {
 	margin-left:-20px;
+}
+
+.form-group {
+	margin-right:7px;
+}
+
+.form-group.vitamins {
+	float:left;
+	width:90px;
+}
+
+.form-group.vitamins input {
+	width:55px;
 }

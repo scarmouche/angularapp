@@ -1,5 +1,5 @@
 <div class="edit-item" ng-if="pitem.edit" ng-if="shouldShowEditing()">
-  <p class="bg-info">Edit {{editedItem.name}}</p>
+  <p class="bg-edit">Edit {{editedItem.name}}</p>
     <form class="edit-form" role="form" ng-submit="updateItem(editedItem)">
       <div class="form-group pull-left">
         <label>Item Name</label>
@@ -9,7 +9,7 @@
       <div class="form-group pull-left">
         <label>Item Kind</label>
         <select class="form-control" ng-model="editedItem.kind" name="Kinds">
-            <option ng-repeat="kind in kinds" value="{{kind.k | lowercase}}">{{kind.k}}</option>
+            <option ng-repeat="kind in kinds" value="{{kind.k}}" ng-selected="editedItem.kind == kind.k">{{kind.k}}</option>
         </select>
       </div>
       
@@ -21,9 +21,52 @@
       <div class="form-group pull-left">
         <label>Color(s)</label>
         <select class="form-control" ng-model="editedItem.color" name="Colors">
-            <option ng-repeat="color in colors" value="{{color.col}}">{{color.col}}</option>
+            <option ng-repeat="color in colors" value="{{color.col}}" ng-selected="editedItem.color == color.col">{{color.col}}</option>
         </select>
       </div>
+
+      <div class="clearfix"></div>
+      <strong>Vitamins</strong><br/>
+      <div class="clearfix"></div>
+    
+    <div class="vitamin-form">
+
+      <div class="form-group vitamins">
+        <div class="input-group">
+          <div class="input-group-addon">A</div>
+          <input class="form-control" ng-model="editedItem.vitaminA" type="text" value="vitaminA" />
+        </div>
+      </div>
+
+      <div class="form-group vitamins">
+        <div class="input-group">
+          <div class="input-group-addon">C</div>
+          <input class="form-control" ng-model="editedItem.vitaminC" type="text" value="vitaminC" />
+        </div>
+      </div>
+
+      <div class="form-group vitamins">
+        <div class="input-group">
+          <div class="input-group-addon">D</div>
+          <input class="form-control" ng-model="editedItem.vitaminD" type="text" value="vitaminD" />
+        </div>
+      </div>
+
+      <div class="form-group vitamins">
+        <div class="input-group">
+          <div class="input-group-addon">E</div>
+          <input class="form-control" ng-model="editedItem.vitaminE" type="text" value="vitaminE" />
+        </div>
+      </div>
+
+      <div class="form-group vitamins">
+        <div class="input-group">
+          <div class="input-group-addon">K</div>
+          <input class="form-control" ng-model="editedItem.vitaminK" type="text" value="vitaminK" />
+        </div>
+      </div>
+
+    </div>
 
       <div class="clearfix"></div>
 

@@ -11,14 +11,19 @@
   <body ng-controller="MainCtrl">
 
   <div class="container">
+    <button type="button" class="btn btn-lg btn-success create-btn pull-right" ng-click="startCreating();">Add new item</button>
+    <div class="pull-left" kind-list></div>
 
-    <div kind-list></div>
       
-    <div color-list></div>
 
-      <div>
-        <button type="button" class="btn btn-default create-btn" ng-click="startCreating();">Add new item</button>
-      </div>
+    <div class="clearfix"></div>  
+    <div color-list></div>
+    <div class="form-group">
+      <label>Search</label>
+      <input type="text" class="form-control" ng-model="query" placeholder="Search for an Item">
+    </div>
+
+      
       
       <create-form></create-form>
     
@@ -26,7 +31,7 @@
     <div id="produce-list">
       <h4>Produce Items</h4>
       <ul class="vegetable list-group">
-        <li ng-class="{'currentEdit':isSelectedItem(pitem.id)}" ng-repeat="pitem in produce | filter:{color:currentColor.col} | filter:{kind:currentKind.k} | orderBy:'-name':!reverse" class="single list-group-item">
+        <li ng-class="{'currentEdit':isSelectedItem(pitem.id)}" ng-repeat="(id, pitem) in produce | filter:{color:currentColor.col} | filter:{kind:currentKind.k} | filter:query | orderBy:'-name':!reverse" class="single list-group-item">
         <div class="item-name-bar">
           <p class="item-name"><strong>{{pitem.name}}</strong></p>
           <button type="button" class="btn btn-info btn-sm edit-btn" ng-click="setEditedItem(pitem);startEditing();">Edit</button>
@@ -43,7 +48,12 @@
               
               <div class="data-block vitamins data-col-xs-height">
                 <h3>Vitamins</h3>
-                <p ng-repeat="(key, data) in pitem.vitamins">Vitamin {{key}}: {{data}}</p>
+                <p>Vitamin A: {{pitem.vitaminE}}<p>
+                <p>Vitamin C: {{pitem.vitaminC}}<p>
+                <p>Vitamin E: {{pitem.vitaminE}}<p>
+                <p>Vitamin D: {{pitem.vitaminD}}<p>
+                <p>Vitamin K: {{pitem.vitaminK}}<p>
+
               </div>
               
               <div class="data-block minerals data-col-xs-height">
@@ -65,7 +75,13 @@
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/lodash.js"></script>
     <script src="scripts/angular.js"></script>
+    <script src="scripts/firebase.js"></script>
+    <script src="scripts/angularfire.min.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/app-controllers.js"></script>
+    <script src="scripts/app-directives.js"></script>
+
+
 
   </body>
 </html>

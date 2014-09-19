@@ -1,0 +1,85 @@
+{
+"produce": 
+      {
+            "id": 0,
+            "kind": "vegetable",
+            "name": "Carrots",
+            "type": "root",
+            "color": "Orange",
+            "edit": false,
+            "vitamins": {"C": "x mg", "A": "x IU"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, 
+            "id": 1,
+            "kind": "vegetable",
+            "name": "Kale",
+            "type": "Greens",
+            "color": "Red",
+            "edit": false,
+            "vitamins": {"K": "x mg", "A": "x IU"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, {
+            "id": 2,
+            "kind": "vegetable",
+            "name": "Green Beans",
+            "type": "legume",
+            "color": "Green",
+            "edit": false,
+            "vitamins": {"C": "x mg", "E": "x IU"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, {
+            "id": 3,
+            "kind": "vegetable",
+            "name": "Beets",
+            "type": "root",
+            "color": "Red",
+            "edit": false,
+            "vitamins": {"K": "x mg", "E": "x IU"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, {
+            "id": 4,
+            "kind": "fruit",
+            "name": "Bananas",
+            "type": "starch",
+            "color": "Yellow",
+            "edit": false,
+            "vitamins": {"A": "x mg"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, {
+            "id": 5,
+            "kind": "fruit",
+            "name": "Oranges",
+            "type": "citrus",
+            "color": "Orange",
+            "edit": false,
+            "vitamins": {"K": "x mg"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, {
+            "id": 6,
+            "kind": "fruit",
+            "name": "Apples",
+            "type": "seed",
+            "color": "Green",
+            "edit": false,
+            "vitamins": {"E": "x mg", "K": "x mg", "A": "x mg"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }, {
+            "id": 7,
+            "kind": "fruit",
+            "name": "Peaches",
+            "type": "stone",
+            "color": "Orange",
+            "edit": false,
+            "vitamins": {"C": "x mg", "A": "x IU"},
+            "minerals": {"Iron": "x mg", "Magnesium": "x mg", "Calcium": "x mg"},
+            "sugars": "x g"
+        }
+      
+}
